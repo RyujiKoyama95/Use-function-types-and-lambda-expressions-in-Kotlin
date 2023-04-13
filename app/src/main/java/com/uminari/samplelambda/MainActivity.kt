@@ -15,8 +15,23 @@ class MainActivity : AppCompatActivity() {
 //        trickFunction()
 //        treat()
 
-        val trickFunction = trickOrTreat(true)
-        val treatFunction = trickOrTreat(false)
+        // (Int)パラメタに明示的に名前"quality"をつけて宣言する
+        val coins: (Int) -> String = { quality ->
+            "$quality quarters"
+        }
+        // (Int)パラメタの名前"quality ->"を省略できる
+        // 関数のパラメタが1つであり、名前を指定しない場合、itで参照できる
+        val coins2: (Int) -> String = {
+            "$it quarters"
+        }
+
+//        val cupcake: (Int) -> String = {
+//            "Have a cupcake!"
+//        }
+
+        val trickFunction = trickOrTreat(true, null)
+//        val treatFunction = trickOrTreat(false, coins)
+        val treatFunction = trickOrTreat(false) { "$it quarters" }
         trickFunction()
         treatFunction()
     }
@@ -29,11 +44,13 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
-    private fun trickOrTreat(isTrick: Boolean, extraTreat: (Int) -> String): () -> Unit {
+    private fun trickOrTreat(isTrick: Boolean, extraTreat: ((Int) -> String)?): () -> Unit {
         return if (isTrick) {
             trick
         } else {
-            println(extraTreat(5))
+            if (extraTreat != null) {
+                println(extraTreat(5))
+            }
             treat
         }
     }
