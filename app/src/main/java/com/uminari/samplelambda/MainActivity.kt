@@ -8,4 +8,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    fun main() {
+        val trickFunction = trick
+        trick()
+        trickFunction()
+        treat()
+    }
+
+    private val trick = {
+        println("No treats!")
+    }
+
+    // 引数なしの戻り値なし () -> Unit
+    private val treat: () -> Unit = {
+        println("Have a treat!")
+    }
 }
