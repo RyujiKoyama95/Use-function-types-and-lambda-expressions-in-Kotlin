@@ -10,10 +10,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun main() {
-        val trickFunction = trick
-        trick()
+//        val trickFunction = trick
+//        trick()
+//        trickFunction()
+//        treat()
+
+        val trickFunction = trickOrTreat(true)
+        val treatFunction = trickOrTreat(false)
         trickFunction()
-        treat()
+        treatFunction()
+    }
+
+//    private fun trickOrTreat(isTrick: Boolean): () -> Unit {
+//        return if (isTrick) {
+//            trick
+//        } else {
+//            treat
+//        }
+//    }
+
+    private fun trickOrTreat(isTrick: Boolean, extraTreat: (Int) -> String): () -> Unit {
+        return if (isTrick) {
+            trick
+        } else {
+            println(extraTreat(5))
+            treat
+        }
     }
 
     private val trick = {
