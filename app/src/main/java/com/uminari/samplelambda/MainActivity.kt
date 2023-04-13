@@ -34,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         val treatFunction = trickOrTreat(false) { "$it quarters" }
         trickFunction()
         treatFunction()
+        repeat(5) {
+            treatFunction()
+        }
     }
 
 //    private fun trickOrTreat(isTrick: Boolean): () -> Unit {
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
+    // 関数を引数として受け取るか、戻り値が関数の場合は高階関数と呼ばれる
     private fun trickOrTreat(isTrick: Boolean, extraTreat: ((Int) -> String)?): () -> Unit {
         return if (isTrick) {
             trick
